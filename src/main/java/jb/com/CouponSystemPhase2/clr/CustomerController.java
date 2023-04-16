@@ -23,6 +23,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/customer")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class CustomerController {
     private final CustomerServiceImpl customerServiceImpl;
     private final CustomerService customerService;
@@ -40,16 +41,22 @@ public class CustomerController {
 
 
     @GetMapping("purchase")
-    public void purchaseCoupon(@RequestHeader ("Authorization") UUID token, @PathVariable  int couponId) throws CouponSystemException, CouponSecurityException {
+    public void purchaseCoupon(@RequestHeader ("Authorization") UUID token, @RequestParam  int couponId) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         customerService.purchaseCoupon(couponRepository.getById(couponId), userId);
 
     }
 
     @GetMapping("coupons")
-    public List<Coupon> getAllCoupons(@RequestHeader ("Authorization") UUID token) throws CouponSystemException, CouponSecurityException {
+    public List<Coupon> getAllCustomerCoupons(@RequestHeader ("Authorization") UUID token) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
-        return customerService.getAllCoupons( userId);
+        return customerService.getAllCustomerCoupons( userId);
+    }
+
+    @GetMapping("allCoupons")
+    public List<Coupon> getAllCoupons(@RequestHeader("Authorization")UUID token) throws CouponSecurityException {
+        int userId = tokenManager.getUserId(token);
+        return customerService.getAllCoupons(userId);
     }
 
     @GetMapping("getCouponsByCategory/{category}")

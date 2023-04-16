@@ -60,7 +60,7 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
     }
 
     @Override
-    public List<Coupon> getAllCoupons(int customerId) throws CouponSystemException {
+    public List<Coupon> getAllCustomerCoupons(int customerId) throws CouponSystemException {
         if (!customerRepository.existsById(customerId)) {
             throw new CouponSystemException(ErrorMsg.ID_NOT_FOUND);
         }
@@ -88,6 +88,11 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
     @Override
     public Optional<Customer> getCustomerInfo(int customerId)  {
         return customerRepository.findById(customerId);
+    }
+
+    @Override
+    public List<Coupon> getAllCoupons(int customerId) {
+        return couponRepository.findAll();
     }
 
 

@@ -23,6 +23,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/company")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class CompanyController {
     private final CompanyService companyService;
     private final CompanyServiceImpl companyServiceImpl;
@@ -70,7 +71,7 @@ public class CompanyController {
         return companyService.getAllCouponsByMaxPrice(userId, maxPrice);
     }
 
-    @GetMapping("GetCompanyInfo")
+    @GetMapping("getCompanyInfo")
     public Optional<Company> getCompanyInfo(@RequestHeader("Authorization") UUID token) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         return companyService.getCompanyInfo(userId);
