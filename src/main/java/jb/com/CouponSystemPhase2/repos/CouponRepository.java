@@ -38,7 +38,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
     List<Coupon> getCustomerCoupons(@Param("customerId")int customerId);
 
     @Query(value = "SELECT couponsystemphase2.coupons.* FROM couponsystemphase2.coupons JOIN couponsystemphase2.customers_coupons ON id = coupons_id WHERE customer_id = :customerId AND category = :category", nativeQuery = true)
-    List<Coupon> getCustomerCouponsByCategory(@Param("customerId")int customerId, @Param("category")String category);
+    List<Coupon> findCustomerCouponsByCategory(@Param("customerId")int customerId, @Param("category")String category);
 
 
 }

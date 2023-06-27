@@ -100,38 +100,38 @@ public class Init implements CommandLineRunner {
         System.out.println(Art.COUPONS);
 
         Coupon coupon1 = Coupon.builder()
-                .title("coupon1")
+                .title("Gaming Set Coupon")
                 .category(Category.PC)
-                .description("coupon1 description")
+                .description("Awesome gaming set including a PC, a keyboard and a monitor.")
                 .startDate(Date.valueOf(LocalDate.now()))
                 .endDate(Date.valueOf(LocalDate.now().plusMonths(4)))
                 .amount(50)
                 .price(49.99)
-                .image("https://cataas.com/cat")
+                .image("https://cosmosgroup.sgp1.cdn.digitaloceanspaces.com/news/4227725_high-gaming-pc-buyer-guide.jpg")
                 .company(company1)
                 .build();
 
         Coupon coupon2 = Coupon.builder()
-                .title("coupon2")
+                .title("All You Can Drink Coupon")
                 .category(Category.DRINKS)
-                .description("coupon2 description")
+                .description("An all you can drink coupon for various pubs and bars")
                 .startDate(Date.valueOf(LocalDate.now()))
                 .endDate(Date.valueOf(LocalDate.now().plusMonths(4)))
                 .amount(50)
                 .price(70.99)
-                .image("https://cataas.com/cat")
+                .image("https://www.thespruceeats.com/thmb/PKK63OuoTMaezzPYvaq2fy-TB5Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bar101-cocktails-504754220-580e83415f9b58564cf470b9.jpg")
                 .company(company2)
                 .build();
 
         Coupon coupon3 = Coupon.builder()
-                .title("coupon3")
+                .title("Sport Equipment Coupon")
                 .category(Category.SPORTS)
-                .description("coupon3 description")
+                .description("A discounted couopon for various sport brands and shops.")
                 .startDate(Date.valueOf(LocalDate.now()))
                 .endDate(Date.valueOf(LocalDate.now().plusMonths(4)))
                 .amount(50)
                 .price(4.99)
-                .image("https://cataas.com/cat")
+                .image("https://www.newsclick.in/sites/default/files/2021-06/sport5.jpg")
                 .company(company3)
                 .build();
 

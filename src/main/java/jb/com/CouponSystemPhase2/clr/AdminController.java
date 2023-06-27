@@ -39,21 +39,21 @@ public class AdminController {
 
     }
 
-    @PostMapping ("/{company}")
+    @PostMapping ("company")
     @ResponseStatus(HttpStatus.CREATED)
     public void addCompany(@RequestHeader ("Authorization") UUID token, @RequestBody Company company) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         adminService.addCompany(company);
     }
 
-    @PutMapping("updateCompany/{id}")
+    @PutMapping("company/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCompany(@RequestHeader ("Authorization") UUID token,@PathVariable int id, @RequestBody Company company) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         adminService.updateCompany(id, company);
     }
 
-    @DeleteMapping("deleteCompany/{id}")
+    @DeleteMapping("company/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCompany(@RequestHeader ("Authorization") UUID token,@PathVariable int id) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
@@ -69,7 +69,7 @@ public class AdminController {
         int userId = tokenManager.getUserId(token);
         return adminService.getCompany(id);
     }
-    @PostMapping("/{customer}")
+    @PostMapping("customer")
     @ResponseStatus(HttpStatus.CREATED)
     public void addCustomer(@RequestHeader ("Authorization") UUID token,@RequestBody Customer customer) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);

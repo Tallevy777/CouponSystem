@@ -18,7 +18,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -53,7 +52,7 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
         coupon.setAmount(coupon.getAmount() - 1);
         couponRepository.saveAndFlush(coupon);
         Customer customer = customerRepository.findCustomerById(customerId);
-        Set<Coupon> coupons = customer.getCoupons();
+        List<Coupon> coupons = customer.getCoupons();
         coupons.add(coupon);
         customer.setCoupons(coupons);
         customerRepository.saveAndFlush(customer);
@@ -74,7 +73,7 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
         if (!couponRepository.existsByCategory(category)) {
             throw new CouponSystemException(ErrorMsg.CATEGORY_NOT_EXIST);
         }
-       return couponRepository.getCustomerCouponsByCategory(customerId, category.toString());
+       return couponRepository.findCustomerCouponsByCategory(customerId, category.toString());
     }
 
     @Override

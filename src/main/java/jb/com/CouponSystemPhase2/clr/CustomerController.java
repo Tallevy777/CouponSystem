@@ -59,13 +59,13 @@ public class CustomerController {
         return customerService.getAllCoupons(userId);
     }
 
-    @GetMapping("getCouponsByCategory/{category}")
+    @GetMapping("couponsByCategory")
     public List<Coupon> getAllCouponsByCategory(@RequestHeader ("Authorization") UUID token,@RequestParam Category category) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         return customerService.getAllCouponsByCategory(userId, category);
     }
 
-    @GetMapping("getCouponsByMaxPrice/{maxPrice}")
+    @GetMapping("couponsByMaxPrice")
     public List<Coupon> getAllCouponsByMaxPrice(@RequestHeader ("Authorization") UUID token,@RequestParam double maxPrice) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         return customerService.getAllCouponsByMaxPrice(userId, maxPrice);

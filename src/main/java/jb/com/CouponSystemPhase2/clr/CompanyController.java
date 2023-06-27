@@ -45,45 +45,45 @@ public class CompanyController {
         companyService.addCoupon(userId, coupon);
     }
 
-    @PutMapping("UpdateCoupon/{id}")
+    @PutMapping("coupon/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCoupon(@RequestHeader("Authorization") UUID token, @PathVariable int id, @RequestBody Coupon coupon) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         companyService.updateCoupon(userId, id, coupon);
     }
 
-    @DeleteMapping("deleteCoupons/{id}")
+    @DeleteMapping("coupon/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCoupon(@RequestHeader("Authorization") UUID token, @PathVariable int id) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         companyService.deleteCoupon(userId, id);
     }
 
-    @GetMapping("getAllCouponsByCategory/{category}")
+    @GetMapping("allCouponsByCategory")
     public List<Coupon> getAllCouponsByCategory(@RequestHeader("Authorization") UUID token, @RequestParam Category category) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         return companyService.getAllCouponsByCategory(userId, category);
     }
 
-    @GetMapping("getAllCouponsByMaxPrice/{maxPrice}")
+    @GetMapping("allCouponsByMaxPrice")
     public List<Coupon> getAllCouponsByMaxPrice(@RequestHeader("Authorization") UUID token, @RequestParam double maxPrice) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         return companyService.getAllCouponsByMaxPrice(userId, maxPrice);
     }
 
-    @GetMapping("getCompanyInfo")
+    @GetMapping("companyInfo")
     public Optional<Company> getCompanyInfo(@RequestHeader("Authorization") UUID token) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         return companyService.getCompanyInfo(userId);
     }
 
-    @GetMapping("getCoupon/{id}")
+    @GetMapping("coupon/{id}")
     public Optional<Coupon> getCoupon(@RequestHeader("Authorization") UUID token, @PathVariable int id) throws CouponSystemException, CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         return companyService.getCoupon(userId, id);
     }
 
-    @GetMapping("getAllCoupons")
+    @GetMapping("allCoupons")
     public List<Coupon> getAllCoupons(@RequestHeader("Authorization") UUID token) throws CouponSecurityException {
         int userId = tokenManager.getUserId(token);
         return companyService.getAllCoupons(userId);

@@ -18,7 +18,7 @@ public enum ErrorMsg {
     COUPON_NOT_FOUND("Coupon Was not Found"),
     COUPON_ALREADY_EXIST("Can only own one of each coupon"),
     AMOUNT_TOO_SMALL("Sorry there are no more coupons left!"),
-    CATEGORY_NOT_EXIST("Category Does Not Exist"),
+    CATEGORY_NOT_EXIST("Coupon not found for the specific category"),
     COUPON_EXPIRED("Sorry this coupon just expired!");
 
 
