@@ -11,7 +11,7 @@
 .App>.Header {
   background-color: #1b1e23;
   color: #fefefe;
-  border: 2px solid #6db33f;
+  border: 2px solid #fefefe;
   grid-column: 12 span;
   grid-row: 2 span;
 }
@@ -19,7 +19,7 @@
 .App>.Menu {
   background-color: #1b1e23;
   color: #fefefe;
-  border: 3px solid #6db33f;
+  border: 3px solid #fefefe;
   grid-column: 3 span;
   grid-row: 28 span;
 }
@@ -27,7 +27,7 @@
 .App>.Main {
   /* background-color: #1b1e23; */
   color: #fefefe;
-  border: 5px solid #6db33f;
+  border: 5px solid #fefefe;
   grid-column: 9 span;
   grid-row: 12 span;
 }
@@ -35,7 +35,7 @@
 .App>.Footer {
   background-color: #1b1e23;
   color: #fefefe;
-  border: 5px solid #6db33f;
+  border: 5px solid #fefefe;
   grid-column: 12 span;
   grid-row: 2 span;
 }

@@ -19,7 +19,7 @@ export function CompanyPreview(props: CompanyPreviewProps): JSX.Element {
         // <Container maxWidth="sm">
         // <Card variant="outlined">
         <div className="CompanyPreview">
-            <h2>{props.company.name}</h2>
+            <br />
             <div className="card">
                 <img className="image" src="https://i0.wp.com/www.iedunote.com/img/23559/what-is-a-company-scaled.jpg" alt="Company" />
                 <h1>{props.company.name}</h1>

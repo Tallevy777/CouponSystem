@@ -43,8 +43,7 @@ function CouponPreview(props: CouponPreviewProps): JSX.Element {
     const nav = useNavigate();
     return (
         <div className="CouponItem">
-            <h2 >{props.coupon.title}</h2>
-
+            <br />
             <div className="card">
                 <img className="image" src={props.coupon.image} alt="Coupon" />
                 <h1>{props.coupon.title}</h1>

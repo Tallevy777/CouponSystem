@@ -5,7 +5,7 @@ import NotyfContext from "../../../Services/NotyfContext";
 import { CompanyPreview } from "../CompanyPreview/CompanyPreview";
 import { AxiosError } from "axios";
 import { Notyf } from "notyf";
-import { Box, Button, Container, Divider } from '@mui/material';
+import { Box, Button, Container, Divider, Grid, Typography } from '@mui/material';
 import Popup from "reactjs-popup";
 import { CompanyForm } from "../CompanyPreview/CompanyForm";
 
@@ -70,14 +70,21 @@ export function CompanyList() {
             <br />
             {filteredCompany !== undefined && <Button variant="outlined" onClick={() => setFilteredCompany(undefined)}>Show All Companies</Button>}
             <br />
-            <h1> Company List</h1>
+            <h1 style={{ textAlign: "center" }}> Company List</h1>
             <br />
-            <Popup trigger={<Button variant="contained"> Create New Company</Button>} position="center center">
-                <CompanyForm updateListData={getList} isUpdate={false} />
-            </Popup>
+            <Typography align='center'>
+                <Popup trigger={<Button variant="contained"> Create New Company</Button>} position="center center">
+                    <CompanyForm updateListData={getList} isUpdate={false} />
+                </Popup>
+            </Typography>
             <br />
-            {filteredCompany === undefined && companies?.map(c => <CompanyPreview company={c} deleteCompany={DeleteCompany} key={c.id} getList={getList} />
-            )}
+            <Grid container spacing={2}>
+                {filteredCompany === undefined && companies?.map(c => (
+                    <Grid item key={c.id} xs={4}>
+                        <CompanyPreview company={c} deleteCompany={DeleteCompany} key={c.id} getList={getList}></CompanyPreview>
+                    </Grid>
+                ))}
+            </Grid>
             {filteredCompany !== undefined && <CompanyPreview company={filteredCompany} deleteCompany={DeleteCompany} getList={getList} />}
         </Box>
     );

@@ -11,7 +11,8 @@ import { CouponForm } from "../CouponPreview/CouponForm";
 import "./CouponList.css";
 import CompanyService from "../../../Services/CompanyService";
 import CustomerService from "../../../Services/CustomerService";
-import { Box, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { text } from "stream/consumers";
 
 
 
@@ -111,9 +112,9 @@ function CouponList(props: CouponListProps): JSX.Element {
     }
     return (
         <Box height={"100%"} overflow={"auto"}>
+
             {!props.isAllCoupons &&
                 <>  <input type="number" value={maxPrice} onChange={s => setSelectedMaxPrice(s.target.value === "" ? 0 : parseInt(s.target.value))} />
-                    <br />
                     <Button variant="outlined" size="small" onClick={onFilterByMaxPrice} >Filter By Max Price </Button>
                     <br />
                     <br />
@@ -128,20 +129,28 @@ function CouponList(props: CouponListProps): JSX.Element {
                             <MenuItem value={"PC"}>Pc</MenuItem>
                         </Select>
                     </FormControl>
-                    <br />
-                    <br />
                     <Button variant="outlined" size="small" onClick={onFilterByCategory} >Filter By Category </Button>
                     <br />
                     <br />
-                    <Button variant="contained" size="medium" onClick={getList} >Reload Full List</Button>
-                </>}
-            <h2> Coupon List</h2>
-            <br />
-            {store.connectedClientType === "COMPANY" && <Popup trigger={<Button variant="contained"> Create New Coupon</Button>} position="center center">
-                <CouponForm updateListData={getList} isUpdate={false} />
-            </Popup>}
+                    <Typography align='center'>
+                        <Button variant="contained" size="medium" onClick={getList} >Reload Full List</Button>
+                    </Typography>
 
-            {coupons?.map(c => <CouponPreview updateListData={getList} urlPrefix={props.urlPrefix} purchaseable={props.isAllCoupons} coupon={c} deleteCoupon={DeleteCoupon} key={c.id} />)}
+                </>}
+            <h2 style={{ textAlign: "center" }}> Coupon List</h2>
+            <br />
+            <Typography align='center'>
+                {store.connectedClientType === "COMPANY" && <Popup trigger={<Button variant="contained"> Create New Coupon</Button>} position="center center">
+                    <CouponForm updateListData={getList} isUpdate={false} />
+                </Popup>}
+            </Typography>
+            <Grid container spacing={2}>
+                {coupons?.map(c => (
+                    <Grid item key={c.id} xs={4}>
+                        <CouponPreview updateListData={getList} urlPrefix={props.urlPrefix} purchaseable={props.isAllCoupons} coupon={c} deleteCoupon={DeleteCoupon} key={c.id}></CouponPreview>
+                    </Grid>
+                ))}
+            </Grid>
         </Box>
     );
 }

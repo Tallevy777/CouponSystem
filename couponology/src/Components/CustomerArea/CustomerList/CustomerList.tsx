@@ -5,7 +5,7 @@ import { CustomerModel } from "../../../Models/Customer";
 import Notyf from "notyf/notyf";
 import NotyfContext from "../../../Services/NotyfContext";
 import { CustomerPreview } from "../CustomerPreview/CustomerPreview";
-import { Box, Button } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import Popup from "reactjs-popup";
 import { CompanyForm } from "../../CompanyArea/CompanyPreview/CompanyForm";
 import { CustomerForm } from "../CustomerPreview/CustomerForm";
@@ -75,13 +75,21 @@ export function CustomerList() {
             <br />
             {filteredCustomer !== undefined && <Button variant="outlined" onClick={() => setFilteredCustomer(undefined)}>Show All Customers</Button>}
             <br />
-            <h1> Customer List</h1>
+            <h1 style={{ textAlign: "center" }}> Customer List</h1>
             <br />
-            <Popup trigger={<Button variant="contained"> Create New Customer</Button>} position="center center">
-                <CustomerForm updateListData={getList} isUpdate={false} />
-            </Popup>
+            <Typography align='center'>
+                <Popup trigger={<Button variant="contained"> Create New Customer</Button>} position="center center">
+                    <CustomerForm updateListData={getList} isUpdate={false} />
+                </Popup>
+            </Typography>
             <br />
-            {filteredCustomer === undefined && customers?.map(c => <CustomerPreview customer={c} deleteCustomer={DeleteCustomer} key={c.id} getList={getList} />)}
+            <Grid container spacing={2}>
+                {filteredCustomer === undefined && customers?.map(c => (
+                    <Grid item key={c.id} xs={4}>
+                        <CustomerPreview customer={c} deleteCustomer={DeleteCustomer} key={c.id} getList={getList}></CustomerPreview>
+                    </Grid>
+                ))}
+            </Grid>
             {filteredCustomer !== undefined && <CustomerPreview customer={filteredCustomer} deleteCustomer={DeleteCustomer} getList={getList} />}
         </Box>
     );

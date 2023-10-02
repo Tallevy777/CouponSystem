@@ -9,6 +9,8 @@ import { CompanyAbout } from "./SpecificAbout/CompanyAbout";
 import { CustomerAbout } from "./SpecificAbout/CustomerAbout";
 import CustomerService from "../../Services/CustomerService";
 import CompanyService from "../../Services/CompanyService";
+import { Card, List, ListItemIcon, ListItemText } from "@mui/material";
+import NumbersOutlinedIcon from '@mui/icons-material/NumbersOutlined';
 
 
 export function AlertForConnection(err: AxiosError, notyf: Notyf) {
@@ -18,8 +20,8 @@ export function AlertForConnection(err: AxiosError, notyf: Notyf) {
 }
 var companyService = new CompanyService();
 var customerService = new CustomerService();
- export function AboutComponent(){
-    const [info, setInfo] = useState<CompanyModel | CustomerModel >();
+export function AboutComponent() {
+    const [info, setInfo] = useState<CompanyModel | CustomerModel>();
 
     const store = useMyStore()
     const getUrlsByConnectedClientType = useCallback(() => {
@@ -36,33 +38,33 @@ var customerService = new CustomerService();
 
 
     useEffect(() => {
-        var func = async () =>{
-            try{
-           var res = await  getUrlsByConnectedClientType()
+        var func = async () => {
+            try {
+                var res = await getUrlsByConnectedClientType()
                 setInfo(res);
             }
-            catch (err : any) {
-                 AlertForConnection(err, new Notyf());
+            catch (err: any) {
+                AlertForConnection(err, new Notyf());
             };
         }
         func()
-}, [getUrlsByConnectedClientType]);
+    }, [getUrlsByConnectedClientType]);
 
-const specificAbout = store.connectedClientType === "CUSTOMER" ? 
-<CustomerAbout customer = {info as CustomerModel} /> :
-<CompanyAbout company = {info as CompanyModel}/>
+    const specificAbout = store.connectedClientType === "CUSTOMER" ?
+        <CustomerAbout customer={info as CustomerModel} /> :
+        <CompanyAbout company={info as CompanyModel} />
 
-return (
-    <div className="AboutComponent">
-      <>  
-        <br />
-        <h1> info</h1>
-        <div>ID: {info?.id} </div>
-        {info !== undefined && specificAbout}
-        <div>Email: {info?.email} </div>
-        <div>Password: {info?.password} </div>
-        </>
-    </div>
-);
+    return (
+        <div >
+            <br />
+            <h1 style={{ textAlign: "center" }}> info</h1>
+            <List style={{ textAlign: "center" }}>
+                <p>ID: {info?.id} </p>
+                {info !== undefined && specificAbout}
+                <p>Email: {info?.email} </p>
+                <p>Password: {info?.password} </p>
+            </List>
+        </div>
+    );
 }
 
